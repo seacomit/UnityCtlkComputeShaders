@@ -24,6 +24,19 @@ public class GPUGraph : MonoBehaviour
 
     Transform[] points;
 
+    ComputeBuffer positionsBuffer;
+
+    void OnEnable()
+    {
+        positionsBuffer = new ComputeBuffer(resolution * resolution, 3 * 4);
+    }
+
+    private void OnDisable()
+    {
+        positionsBuffer.Release();
+        positionsBuffer = null;
+    }
+
     void Update()
     {
         duration += Time.deltaTime;
