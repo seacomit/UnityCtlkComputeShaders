@@ -884,6 +884,9 @@ MonoBehaviour:
   transitionMode: 0
   functionDuration: 1
   transitionDuration: 0
+  computeShader: {fileID: 7200000, guid: b5443db14ec3bc64c9410264c613daa9, type: 3}
+  material: {fileID: 2100000, guid: 3503ac08da55ddb42aca27c4306bfef1, type: 2}
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &2090920587
 Transform:
   m_ObjectHideFlags: 0
