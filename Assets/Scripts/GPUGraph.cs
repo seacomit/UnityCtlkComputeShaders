@@ -61,8 +61,14 @@ public class GPUGraph : MonoBehaviour
         computeShader.SetBuffer(0, positionsId, positionsBuffer);
         int groups = Mathf.CeilToInt(resolution / 8f);
         computeShader.Dispatch(0, groups, groups, 1);
-        var bounds = new Bounds(Vector3.zero, Vector3.one * (2f + 2f / resolution));
-        Graphics.DrawMeshInstancedProcedural(mesh, 0, material, bounds, positionsBuffer.count);
+        //var bounds = new Bounds(Vector3.zero, Vector3.one * (2f + 2f / resolution));
+        //Graphics.DrawMeshInstancedProcedural(mesh, 0, material, bounds, positionsBuffer.count);
+        RenderParams rp = new RenderParams(material);
+        rp.worldBounds = new Bounds(Vector3.zero, Vector3.one * (2f + 2f / resolution));
+        rp.matProps = new MaterialPropertyBlock();
+        //rp.matProps.SetMatrix("_ObjectToWorld", Matrix4x4.Translate(new Vector3(-4.5f, 0, 0)));
+        //rp.matProps.SetFloat("_NumInstances", 10.0f);
+        Graphics.RenderMeshPrimitives(rp, mesh, 0, positionsBuffer.count);
     }
 
     void Update()
