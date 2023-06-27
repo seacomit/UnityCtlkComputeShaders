@@ -65,7 +65,7 @@ public class GPUGraph : MonoBehaviour
         {
             computeShader.SetFloat(transitionProgressId, Mathf.SmoothStep(0, 1f, duration / transitionDuration));
         }
-        var kernelIndex = (int)function + (int)(transitioning ? transitionFunction : function) * 5;
+        var kernelIndex = (int)function + (int)(transitioning ? transitionFunction : function) * FunctionLibrary.FunctionCount;
         computeShader.SetBuffer(kernelIndex, positionsId, positionsBuffer);
         int groups = Mathf.CeilToInt(resolution / 8f);
         computeShader.Dispatch(kernelIndex, groups, groups, 1);
