@@ -66,8 +66,8 @@ public class GPUGraph : MonoBehaviour
         RenderParams rp = new RenderParams(material);
         rp.worldBounds = new Bounds(Vector3.zero, Vector3.one * (2f + 2f / resolution));
         rp.matProps = new MaterialPropertyBlock();
-        //rp.matProps.SetMatrix("_ObjectToWorld", Matrix4x4.Translate(new Vector3(-4.5f, 0, 0)));
-        //rp.matProps.SetFloat("_NumInstances", 10.0f);
+        rp.matProps.SetBuffer(positionsId, positionsBuffer);
+        rp.matProps.SetFloat(stepId, step);
         Graphics.RenderMeshPrimitives(rp, mesh, 0, positionsBuffer.count);
     }
 
